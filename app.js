@@ -22,7 +22,9 @@ const createUser = async () => {
     const role = document.getElementById('role').value;
     const age = document.getElementById('age').value;
     // Crea un nuovo oggetto utente
-    const newUser = { name, role, age };
+    const newUser = { name :name,
+                        role: role,
+                        age:age };
 
     // Invia una richiesta POST all'API con il nuovo utente
     // L'uso di await è necessario per attendere che la richiesta venga completata
@@ -71,7 +73,9 @@ const updateUser = async () => {
     const role = document.getElementById('role').value;
     const age = document.getElementById('age').value;
     // Crea un nuovo oggetto utente con i nuovi dati
-    const updatedUser = { name, role, age };
+    const updatedUser = { name :name,
+                        role: role,
+                        age:age };
 
     // Invia una richiesta PUT all'API per aggiornare l'utente richiesto
     // L'uso di await è necessario per attendere che la richiesta venga completata

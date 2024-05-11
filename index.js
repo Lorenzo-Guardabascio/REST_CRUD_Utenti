@@ -1,5 +1,5 @@
 // Costanti e variabili globali
-const API_URL = 'https://663a66f61ae792804bef3adb.mockapi.io/utenti/User/';
+const API_URL = 'https://663f2371e3a7c3218a4c3244.mockapi.io/users/';
 const USERS_CONTAINER_ID = 'users-list';
 
 /**

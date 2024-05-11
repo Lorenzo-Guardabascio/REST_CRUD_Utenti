@@ -1,5 +1,11 @@
 // Costante con l'URL dell'API
-const url = 'https://663a66f61ae792804bef3adb.mockapi.io/utenti/User/';
+const url = 'https://663f2371e3a7c3218a4c3244.mockapi.io/users/';
+//const token = 'fdfgdfgdfgdfgkdljglkjlkjdeiwrweroiwer';
+
+// estrai l'id dal permalink
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const paramId = urlParams.get('id');
 
 // Funzione chiamata all'avvio della pagina per recuperare e mostrare gli utenti
 // Questa funzione viene chiamata all'avvio della pagina e mostra tutti gli utenti presenti nell'API
@@ -18,19 +24,24 @@ window.onload = async () => {
 // Questa funzione viene chiamata quando si vuole creare un nuovo utente
 const createUser = async () => {
     // Recupera i valori inseriti dall'utente nel form
-    const name = document.getElementById('name').value;
-    const role = document.getElementById('role').value;
-    const age = document.getElementById('age').value;
+    const constantName  = document.getElementById('name').value;
+    const constantRole  = document.getElementById('role').value;
+    const constantAge   = document.getElementById('age').value;
     // Crea un nuovo oggetto utente
-    const newUser = { name :name,
-                        role: role,
-                        age:age };
+    const newUser = { 
+        name:   constantName,
+        role:   constantRole,
+        age:    constantAge ,
+        };
 
     // Invia una richiesta POST all'API con il nuovo utente
     // L'uso di await è necessario per attendere che la richiesta venga completata
     const res = await fetch(url, {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: {
+             "content-type": "application/json" ,
+             //"Authorization" : `Brearer ${token}`,
+            },
         body: JSON.stringify(newUser),
     });
 
@@ -73,9 +84,11 @@ const updateUser = async () => {
     const role = document.getElementById('role').value;
     const age = document.getElementById('age').value;
     // Crea un nuovo oggetto utente con i nuovi dati
-    const updatedUser = { name :name,
-                        role: role,
-                        age:age };
+    const updatedUser = { 
+        name :name,
+        role: role,
+        age:age 
+    };
 
     // Invia una richiesta PUT all'API per aggiornare l'utente richiesto
     // L'uso di await è necessario per attendere che la richiesta venga completata
@@ -124,7 +137,9 @@ const deleteUser = async () => {
 const showUsers = async () => {
     // Invia una richiesta GET all'API per recuperare tutti gli utenti
     // L'uso di await è necessario per attendere che la richiesta venga completata
-    const res = await fetch(url);
+    const res = await fetch(url,
+        //"Authorization" : `Brearer ${token}`,
+    );
     // Converte la risposta in un oggetto JSON
     const users = await res.json();
     // Recupera l'elemento HTML in cui mostrare gli utenti
@@ -145,3 +160,8 @@ const showUsers = async () => {
 }
 
 
+function clearForm(){
+    document.getElementById('name').value = '';
+    document.getElementById('role').value = '';
+    document.getElementById('age').value = '';
+}
